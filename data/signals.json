@@ -1,0 +1,21 @@
+{
+ "sinais": [
+  {
+   "mesa": "cripto",
+   "ativo": "BTCUSDT",
+   "hora": "2026-11-24T03:15:58+00:00",
+   "preco": 59632.41,
+   "resultado": "sem_sinal",
+   "briefing": {
+    "volatilidade": "alta",
+    "evitar_operar": false
+   },
+   "contexto": {
+    "fase": "tendencia_baixa",
+    "always_in": "venda",
+    "forca": 4
+   }
+  }
+ ],
+ "atualizado": "2026-11-24T03:15:58+00:00"
+}
