@@ -68,25 +68,45 @@ footer{padding:25px;text-align:center;color:#64748b;font-size:12px}
 
   <h2>Central de mercado</h2>
   <section class="market">
-    <div class="chart">
-      <div>
-        <div style="font-size:38px">📈</div>
-        <div class="big">WIN / B3</div>
-        <p class="muted">Gráfico aguardando integração com TradingView</p>
-        <span class="tag wait">Sem dados ao vivo</span>
-      </div>
-    </div>
-    <div class="card">
-      <h2>Monitor de operações</h2>
-      <div class="metric"><span>Mercado</span><b>WIN</b></div>
-      <div class="metric"><span>Período</span><b>15 minutos</b></div>
-      <div class="metric"><span>Estrutura</span><b>Não analisada</b></div>
-      <div class="metric"><span>Entrada</span><b>---</b></div>
-      <div class="metric"><span>Stop</span><b>---</b></div>
-      <div class="metric"><span>Alvo</span><b>---</b></div>
-      <div class="signal">AGUARDANDO ANÁLISE</div>
-    </div>
-  </section>
+    <div id="tv-chart" style="height:500px;width:100%;border-radius:10px;overflow:hidden">
+
+  <div class="tradingview-widget-container" style="height:100%;width:100%">
+
+    <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+
+    {
+
+      "autosize": true,
+
+      "symbol": "BMFBOVESPA:WIN1!",
+
+      "interval": "15",
+
+      "timezone": "America/Sao_Paulo",
+
+      "theme": "dark",
+
+      "style": "1",
+
+      "locale": "br",
+
+      "allow_symbol_change": true,
+
+      "hide_side_toolbar": false,
+
+      "calendar": false,
+
+      "support_host": "https://www.tradingview.com"
+
+    }
+
+    </script>
+
+  </div>
+
+</div>
 
   <h2 style="margin-top:28px">Sala de comando</h2>
   <section class="grid">
