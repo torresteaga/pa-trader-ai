@@ -1,0 +1,9 @@
+{
+  "modo": "simulacao",
+  "risco_por_operacao_pct": 1,
+  "perda_diaria_max_pct": 3,
+  "max_mesas_expostas": 2,
+  "risco_retorno_min": 1,
+  "probabilidade_min": 55,
+  "timeframe": "5m"
+}
