@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PA Trader AI · Escritório</title>
+<style>
+body{margin:0;background:#0e1622;color:#e8eef6;font:15px/1.45 system-ui,sans-serif}
+.w{max-width:720px;margin:0 auto;padding:16px 14px 28px}
+h1{font:bold 14px monospace;margin:0}
+.sub{color:#92a3b8;font-size:13px;margin:4px 0 12px}
+.office{background:#24384a;border:4px solid #0f1a26;border-radius:14px;padding:14px 12px 18px}
+.boss{display:flex;align-items:center;gap:14px;background:#1a2a3a;border:3px solid #4d5f73;border-radius:10px;padding:10px 12px}
+.boss .info{flex:1}.boss h2{font:bold 12px monospace;margin:0 0 6px}
+.bar{height:12px;border-radius:6px;background:#0b1118;overflow:hidden;border:2px solid #4d5f73}
+.bar i{display:block;height:100%;width:0;background:#e5484d;transition:width .4s}
+.boss small{display:block;margin-top:5px;color:#a9bbd0;font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 12px;margin-top:16px}
+.desk{display:flex;flex-direction:column;align-items:center;min-width:0}
+.screen{width:100%;max-width:170px;background:#0b1118;border:3px solid #4d5f73;border-radius:6px;padding:5px 6px 4px;color:#cfe1f3}
+.screen .t{display:flex;justify-content:space-between;font:bold 11px sans-serif}
+.screen svg{display:block;width:100%;height:34px}
+.inf{font-size:10px;color:#a9bbd0;line-height:1.3;min-height:13px}
+.p{position:relative;width:38px;height:42px;margin-top:6px;z-index:1}
+.hd{position:absolute;left:9px;top:0;width:20px;height:19px;background:#f0c7a0;border-top:7px solid var(--h);border-radius:5px}
+.bd{position:absolute;left:5px;top:20px;width:28px;height:22px;background:var(--c);border-radius:6px 6px 0 0}
+.ar{position:absolute;top:26px;width:8px;height:14px;background:var(--c);filter:brightness(.78);border-radius:3px;animation:tp .5s infinite}
+.a1{left:-2px}.a2{right:-2px;animation-delay:.25s}
+.off .bd,.off .ar{background:#66717e}.off .ar{animation:none}
+@keyframes tp{50%{transform:translateY(4px)}}
+.top{width:100%;max-width:170px;margin-top:-14px;z-index:2;position:relative;background:#b9854a;border:3px solid #6e4a22;border-radius:6px;padding:6px;text-align:center;color:#2b1a08}
+.top b{display:block;font:bold 11px monospace}.top span{font-size:12px;font-weight:700}
+.chip{display:inline-block;margin-top:4px;padding:1px 8px;border-radius:99px;font:bold 11px sans-serif;background:#2a3b4d;color:#cfe1f3}
+.chip.buy{background:#1f7a46;color:#fff}.chip.sell{background:#b4372f;color:#fff}.chip.blk{background:#e5484d;color:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.st{background:#162233;border:1px solid #26364b;border-radius:10px;padding:8px 4px;text-align:center}
+.st b{display:block;font:bold 15px monospace}.st span{font-size:11px;color:#92a3b8}
+h3{font:bold 12px monospace;margin:0 0 8px}
+#log{list-style:none;margin:0;padding:0;font:12.5px/1.5 ui-monospace,monospace}
+#log li{padding:5px 0;border-bottom:1px solid #26364b;overflow-wrap:anywhere}
+.note{color:#92a3b8;font-size:12px;margin-top:12px}
+</style></head><body><div class="w">
+<h1>PA TRADER AI HQ</h1>
+<p class="sub">Escritório de agentes · modo simulação</p>
+<div class="office">
+<div class="boss">
+<div class="p" style="--c:#e5484d;--h:#2b1a08"><div class="hd"></div><div class="bd"></div><div class="ar a1"></div><div class="ar a2"></div></div>
+<div class="info"><h2>Gestor de risco</h2><div class="bar"><i id="ex"></i></div><small id="rk">Aguardando dados…</small></div>
+</div>
+<div class="grid" id="grid"></div>
+</div>
+<div class="stats">
+<div class="st"><b id="s1">-</b><span>Execuções</span></div>
+<div class="st"><b id="s2">-</b><span>Autorizados</span></div>
+<div class="st"><b id="s3">-</b><span>Vetos</span></div>
+<div class="st"><b id="s4">-</b><span>Atualizado</span></div>
+</div>
+<h3>Diário de inteligência</h3>
+<ul id="log"><li>Carregando…</li></ul>
+<p class="note">Simulação: nenhum sinal envia ordem real.</p>
+</div>
+<script>
+var M=[
+{id:'cripto',mesa:'Mesa Cripto',ag:'Cris',sym:'BTC/USDT',c:'#8a63d2',h:'#a83232',live:1},
+{id:'ouro',mesa:'Mesa Ouro',ag:'Ágata',sym:'XAU/USD',c:'#e6b422',h:'#6b3f10'},
+{id:'dolar',mesa:'Mesa Dólar',ag:'Dante',sym:'WDO',c:'#2fa564',h:'#1c1c1c'},
+{id:'b3',mesa:'Mesa B3',ag:'Beto',sym:'WIN',c:'#2f80ed',h:'#3a2a1a'}];
+var g=document.getElementById('grid'),$=function(i){return document.getElementById(i)};
+M.forEach(function(a){
+var d=document.createElement('div');d.className='desk'+(a.live?'':' off');
+d.innerHTML='<div class="screen"><div class="t"><span>'+a.sym+'</span><span id="pr-'+a.id+'">'+(a.live?'...':'--')+'</span></div><svg viewBox="0 0 100 34" preserveAspectRatio="none"><polyline id="ln-'+a.id+'" fill="none" stroke="'+a.c+'" stroke-width="2" points=""/></svg><div class="inf" id="inf-'+a.id+'">'+(a.live?'carregando…':'sem dados')+'</div></div>'+
+'<div class="p" style="--c:'+a.c+';--h:'+a.h+'"><div class="hd"></div><div class="bd"></div><div class="ar a1"></div><div class="ar a2"></div></div>'+
+'<div class="top"><b>'+a.mesa+'</b><span>'+a.ag+'</span><br><span class="chip" id="ch-'+a.id+'">'+(a.live?'Conectando':'Offline')+'</span></div>';
+g.appendChild(d);});
+function chip(t,k){var e=$('ch-cripto');e.textContent=t;e.className='chip '+(k||'');}
+function nome(s){return (s||'').replace(/_/g,' ');}
+function render(d){
+var S=d.sinais||[];if(!S.length)return;
+var L=S[0],aut=0,vet=0;
+S.forEach(function(s){if(s.resultado=='autorizar')aut++;else if(s.resultado=='vetar'||s.resultado=='reprovado')vet++;});
+var c=L.contexto||{};
+$('pr-cripto').textContent=Number(L.preco).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+$('inf-cripto').textContent=nome(c.fase)+' · always-in '+(c.always_in||'-')+' · força '+(c.forca==null?'-':c.forca);
+var h=S.slice().reverse().map(function(s){return s.preco}),mn=Math.min.apply(0,h),mx=Math.max.apply(0,h),r=(mx-mn)||1;
+$('ln-cripto').setAttribute('points',h.map(function(v,i){return (h.length>1?i*100/(h.length-1):0).toFixed(1)+','+(30-(v-mn)/r*26).toFixed(1)}).join(' '));
+if(L.resultado=='autorizar'){var co=L.plano&&L.plano.direcao=='compra';chip(co?'Comprado':'Vendido',co?'buy':'sell');}
+else if(L.resultado=='vetar')chip('Vetado','blk');
+else if(L.resultado=='reprovado')chip('Reprovado','blk');
+else chip('Analisando');
+$('ex').style.width=(L.resultado=='autorizar'?50:0)+'%';
+$('rk').textContent='Autorizados '+aut+' · Vetos '+vet;
+$('s1').textContent=S.length;$('s2').textContent=aut;$('s3').textContent=vet;
+$('s4').textContent=new Date(d.atualizado).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+var u=$('log');u.innerHTML='';
+S.slice(0,8).forEach(function(s){var li=document.createElement('li'),cx=s.contexto||{};
+var hr=new Date(s.hora).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+li.textContent='['+hr+'] [CRIS] '+(s.resultado=='sem_sinal'?'sem sinal · '+nome(cx.fase):nome(s.resultado)+(s.plano?' · '+s.plano.setup+' '+s.plano.direcao:''));
+u.appendChild(li);});}
+function load(){fetch('data/signals.json?t='+Date.now()).then(function(r){return r.json()}).then(render).catch(function(){chip('Sem conexão','blk')});}
+load();setInterval(load,60000);
+</script></body></html>
