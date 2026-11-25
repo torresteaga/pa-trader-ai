@@ -3,6 +3,22 @@
   {
    "mesa": "cripto",
    "ativo": "BTCUSDT",
+   "hora": "2026-11-25T03:45:38+00:00",
+   "preco": 59476.58,
+   "resultado": "sem_sinal",
+   "briefing": {
+    "volatilidade": "normal",
+    "evitar_operar": false
+   },
+   "contexto": {
+    "fase": "range",
+    "always_in": "neutro",
+    "forca": 5
+   }
+  },
+  {
+   "mesa": "cripto",
+   "ativo": "BTCUSDT",
    "hora": "2026-11-25T02:42:56+00:00",
    "preco": 59299.42,
    "resultado": "sem_sinal",
@@ -353,5 +369,5 @@
    }
   }
  ],
- "atualizado": "2026-11-25T02:42:56+00:00"
+ "atualizado": "2026-11-25T03:45:38+00:00"
 }
