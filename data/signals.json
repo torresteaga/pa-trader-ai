@@ -3,6 +3,22 @@
   {
    "mesa": "cripto",
    "ativo": "BTCUSDT",
+   "hora": "2026-11-27T14:53:08+00:00",
+   "preco": 59512.63,
+   "resultado": "sem_sinal",
+   "briefing": {
+    "volatilidade": "alta",
+    "evitar_operar": true
+   },
+   "contexto": {
+    "fase": "tendencia_baixa",
+    "always_in": "venda",
+    "forca": 4
+   }
+  },
+  {
+   "mesa": "cripto",
+   "ativo": "BTCUSDT",
    "hora": "2026-11-27T13:54:15+00:00",
    "preco": 61522.0,
    "resultado": "sem_sinal",
@@ -783,23 +799,7 @@
     "always_in": "neutro",
     "forca": 6
    }
-  },
-  {
-   "mesa": "cripto",
-   "ativo": "BTCUSDT",
-   "hora": "2026-11-25T03:45:38+00:00",
-   "preco": 59476.58,
-   "resultado": "sem_sinal",
-   "briefing": {
-    "volatilidade": "normal",
-    "evitar_operar": false
-   },
-   "contexto": {
-    "fase": "range",
-    "always_in": "neutro",
-    "forca": 5
-   }
   }
  ],
- "atualizado": "2026-11-27T13:54:15+00:00"
+ "atualizado": "2026-11-27T14:53:08+00:00"
 }
